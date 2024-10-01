@@ -1,0 +1,172 @@
+header{font-family:Apple Chancery, cursive;}
+a{text-decoration: none; color: black;}
+p{text-align: justify;}
+.curved-text {
+    font-size: 22px;
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    animation: curve 5s linear infinite;
+}
+
+@keyframes curve {
+    0% {
+        text-indent: 275px;
+    }
+
+    50% {
+        text-indent: 125px;
+    }
+
+    100% {
+        text-indent: 0px;
+    }
+}
+
+.line {
+    background-color: orange;
+    height: 10px;
+    width: 1805px;
+    margin-left: 25px;
+}
+
+.text_line {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.headers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.img_header {
+    width: 80px;
+}
+
+.left {
+    width: 220px;
+    font-size: 50px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.right {
+    align-items: end;
+    display: flex;
+    width: 220px;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.number {
+    justify-content: end;
+    align-items: center;
+    display: flex;
+    width: 250px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.tablo {
+    display: flex;
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+.but_tab {
+    height: 65px;
+    width: 310px;
+    background-color: #724628;
+    color: orange;
+    font-size: 18px;
+}
+
+.but_sp {
+    height: 50px;
+    width: 300px;
+    background-color: #724628;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.main_part {
+    margin-top: 40px;
+    display: flex;
+}
+
+.main_text {
+    margin-left: 30px;
+    font-size: 22px;
+}
+
+.img_sp {
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.coffe-info {
+    display: none;
+    width: 1500px;
+    margin-top: -30px;
+}
+
+.photo {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 300px;
+    border-radius: 15px;
+}
+
+.footer_line {
+    height: 2px;
+    background-color: black;
+    margin-top: 25px;
+}
+
+.footer {
+    font-family: 'Play', sans-serif;
+    text-align: center;
+}
+
+.footer .row {
+    width: 100%;
+    margin: 1% 0%;
+    padding: 0.6% 0%;
+    color: gray;
+    font-size: 0.8em;
+}
+
+.footer .row a {
+    text-decoration: none;
+    color: rgb(59, 3, 3);
+    transition: 0.5s;
+}
+
+.footer .row a:hover {
+    color: #4305ee;
+}
+
+.footer .row ul {
+    width: 100%;
+}
+
+.footer .row ul li {
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.footer .row a i {
+    font-size: 2em;
+    margin: 0% 1%;
+}
