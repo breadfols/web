@@ -1,8 +1,9 @@
 from pydantic import BaseModel
 from typing import List
 from fastapi import FastAPI, HTTPException 
+
 import uvicorn 
- 
+
 class Coffe(BaseModel): 
     id: int 
     name: str 
@@ -35,6 +36,7 @@ user_db = [
     User(id=2, name="Петр Петров", email="petr@example.com"),
     User(id=3, name="Сергей Сергеев", email="sergey@example.com"),
 ]
+
 app = FastAPI()
 
 @app.get("/coffe/") 
