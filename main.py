@@ -3,6 +3,7 @@ from typing import List
 from fastapi import FastAPI, HTTPException 
 import uvicorn 
 
+# Определение моделей
 class Coffe(BaseModel): 
     id: int 
     name: str 
@@ -18,6 +19,7 @@ class User(BaseModel):
     name: str
     email: str
 
+# Базы данных (временные)
 coffe_db = [
     Coffe(id=1, name="Американо", price=100.0),
     Coffe(id=2, name="Эспрессо", price=80.0),
@@ -38,35 +40,68 @@ user_db = [
 
 app = FastAPI()
 
-@app.get("/coffe/") 
-def read_coffe(): return coffe_db
+# CRUD для Coffe
+@app.get("/coffe/", response_model=List[Coffe]) 
+def read_coffe(): 
+    return coffe_db
 
-@app.get("/coffe/{id}")
+@app.get("/coffe/{id}", response_model=Coffe)
 def read_coffe(id: int):
     for coffe in coffe_db:
         if coffe.id == id:
             return coffe
     raise HTTPException(status_code=404, detail="Кофе не найден")
 
-@app.get("/coffe-info/") 
-def read_coffe_info(): return coffe_info_db
+@app.post("/coffe/", response_model=Coffe)
+def create_coffe(coffe: Coffe):
+    coffe_db.append(coffe)
+    return coffe
 
-@app.get("/coffe-info/{id}")
+@app.put("/coffe/{id}", response_model=Coffe)
+def update_coffe(id: int, updated_coffe: Coffe):
+    for index, coffe in enumerate(coffe_db):
+        if coffe.id == id:
+            coffe_db[index] = updated_coffe
+            return updated_coffe
+    raise HTTPException(status_code=404, detail="Кофе не найден")
+
+@app.delete("/coffe/{id}")
+def delete_coffe(id: int):
+    for index, coffe in enumerate(coffe_db):
+        if coffe.id == id:
+            del coffe_db[index]
+            return {"detail": "Кофе удален"}
+    raise HTTPException(status_code=404, detail="Кофе не найден")
+
+# CRUD для CoffeInfo
+@app.get("/coffe-info/", response_model=List[CoffeInfo]) 
+def read_coffe_info(): 
+    return coffe_info_db
+
+@app.get("/coffe-info/{id}", response_model=CoffeInfo) 
 def read_coffe_info(id: int): 
     for coffe_info in coffe_info_db: 
         if coffe_info.id == id: 
             return coffe_info 
     raise HTTPException(status_code=404, detail="Информация о кофе не найдена")
 
-@app.get("/user/") 
-def read_user(): return user_db
+@app.post("/coffe-info/", response_model=CoffeInfo)
+def create_coffe_info(coffe_info: CoffeInfo):
+    coffe_info_db.append(coffe_info)
+    return coffe_info
 
-@app.get("/user/{id}") 
-def read_user(id: int): 
-    for user in user_db: 
-        if user.id == id: 
-            return user
-    raise HTTPException(status_code=404, detail="Пользователь не найден")
+@app.put("/coffe-info/{id}", response_model=CoffeInfo)
+def update_coffe_info(id: int, updated_coffe_info: CoffeInfo):
+    for index, coffe_info in enumerate(coffe_info_db):
+        if coffe_info.id == id:
+            coffe_info_db[index] = updated_coffe_info
+            return updated_coffe_info
+    raise HTTPException(status_code=404, detail="Информация о кофе не найдена")
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+@app.delete("/coffe-info/{id}")
+def delete_coffe_info(id: int):
+    for index, coffe_info in enumerate(coffe_info_db):
+        if coffe_info.id == id:
+            del coffe_info_db[index]
+            return {"detail": "Информация о кофе удалена"}
+   
